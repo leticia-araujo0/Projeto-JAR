@@ -1,4 +1,5 @@
 package leticia.projeto.individual;
+
 import java.util.Scanner;
 
 /*
@@ -25,7 +26,7 @@ public class CalculadoraDeIdadeCoreana {
             System.out.println("1 - Diga qual a sua idade! ");
             System.out.println("2 - Calcular minha idade coreana! ");
             System.out.println("3 - Por que minha idade coreana é diferente?");
-            System.out.println("4 - Fim!");
+            System.out.println("4 - Encerrar a calculadora!");
 
             voltaMenu = leitor.nextInt();
 
@@ -46,7 +47,11 @@ public class CalculadoraDeIdadeCoreana {
 
                     Integer calculoIdade = (anoAtual - anoNascimento);
 
-                    System.out.println(String.format("Idade internacional: %d ", calculoIdade));
+                    if (mesNascimento <= 3) {
+                        System.out.println(String.format("Idade internacional: %d ", calculoIdade - 1));
+                    } else {
+                        System.out.println(String.format("Idade internacional: %d ", calculoIdade));
+                    }
                     break;
 
                 case 2:
@@ -63,10 +68,15 @@ public class CalculadoraDeIdadeCoreana {
 
                     if (diaNascimento == 31 && mesNascimento == 12) {
                         System.out.println("Idade coreana: " + (anoAtual - anoNascimento + 2));
-                    } else {
+
+                    } else if (mesNascimento <= 2) {
                         System.out.println("Idade coreana:  " + (anoAtual - anoNascimento + 1));
+
+                    } else {
+                        System.out.println("Idade coreana: " + (anoAtual - anoNascimento));
                     }
                     break;
+
                 case 3:
                     System.out.println("3 - Por que minha idade coreana é diferente? \n ");
 
@@ -82,7 +92,12 @@ public class CalculadoraDeIdadeCoreana {
                     break;
 
                 default:
-                    System.out.println("Essa opção não existe, tente novamente! \n");
+                    System.out.println("Opção inválida! Tente novamente! \n");
+
+                    do {
+                        System.out.println("Digite um número equivalente a alguma das opções do menu: ");
+                        voltaMenu = leitor.nextInt();
+                    } while (voltaMenu > 4);
 
             }
         }
